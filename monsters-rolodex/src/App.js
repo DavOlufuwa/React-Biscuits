@@ -21,10 +21,9 @@ class App extends Component {
       return{
         monsters: users
       }
-    },()=>{
-      console.log(this.state);
     }))
   }
+  // A Secondary CallBack Function is not always necessary
 
 
   // this is what we are rendering we use the render method.
