@@ -9,9 +9,9 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters :[]
+      monsters :[],
  
-      
+      searchValue: ''
 
     };
   }
@@ -28,20 +28,21 @@ class App extends Component {
 
   // this is what we are rendering we use the render method.
   render(){
+    const filteredMonsters = this.state.monsters.filter((monster)=>{
+        return monster.name.toLocaleLowerCase().includes(this.state.searchValue);
+    });
+
     return (
       <div className="App">
         <input className ='search-box' type='search' placeholder = 'Search Monsters' onChange={(e)=>{
           const searchValue = e.target.value.toLocaleLowerCase();
-          const filteredMonsters = this.state.monsters.filter((monster)=>{
-              return monster.name.toLocaleLowerCase().includes(searchValue);
-          });
           this.setState(()=>{
-            return{monsters : filteredMonsters};
+            return{searchValue};
           })
         }}/>
         <h1>
          {
-           this.state.monsters.map((monster)=>{
+           filteredMonsters.map((monster)=>{
               return<div key={monster.id}>{monster.name}</div>
            })
          }
