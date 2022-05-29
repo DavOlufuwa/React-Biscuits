@@ -24,22 +24,29 @@ class App extends Component {
     }))
   }
   // A Secondary CallBack Function is not always necessary
-
+  onSearchChange = (e)=>{
+    const searchValue = e.target.value.toLocaleLowerCase();
+    this.setState(()=>{
+      return{searchValue};
+    })
+  }
 
   // this is what we are rendering we use the render method.
+  // this is what will show up on our screens.
   render(){
-    const filteredMonsters = this.state.monsters.filter((monster)=>{
-        return monster.name.toLocaleLowerCase().includes(this.state.searchValue);
-    });
 
+    // destructuring
+    const {monsters, searchValue} = this.state;
+    const {onSearchChange} = this;
+
+    // filter to search for anything in the searchbar
+    const filteredMonsters = monsters.filter((monster)=>{
+        return monster.name.toLocaleLowerCase().includes(searchValue);
+    });
+    
     return (
       <div className="App">
-        <input className ='search-box' type='search' placeholder = 'Search Monsters' onChange={(e)=>{
-          const searchValue = e.target.value.toLocaleLowerCase();
-          this.setState(()=>{
-            return{searchValue};
-          })
-        }}/>
+        <input className ='search-box' type='search' placeholder = 'Search Monsters' onChange={onSearchChange}/>
         <h1>
          {
            filteredMonsters.map((monster)=>{
