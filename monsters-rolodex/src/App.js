@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
-import logo from './logo.svg';
+import CardList from './components/card-list/card-list.component'
+import SearchBox from './components/Search-box/search-box.component'
 import './App.css';
 // turning the original function into a Class that extends from the super Class "Component"
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
   // this is what will show up on our screens.
   render(){
 
-    // destructuring
+    // destructuring (that is reducing a lot of values to a single line of)
     const {monsters, searchValue} = this.state;
     const {onSearchChange} = this;
 
@@ -46,16 +47,18 @@ class App extends Component {
     
     return (
       <div className="App">
-        <input className ='search-box' type='search' placeholder = 'Search Monsters' onChange={onSearchChange}/>
-        <h1>
-         {
+       <SearchBox className='search-box' placeholder="search monsters here" onChangeHandler={onSearchChange} />
+        {/* <h1>
+          {
            filteredMonsters.map((monster)=>{
               return<div key={monster.id}>{monster.name}</div>
            })
-         }
-        </h1>
+        
+        </h1> */}
+        <CardList monsters={filteredMonsters} anything ={["a", "z"]}/>
       </div>
     );
+
   }
 }
 
