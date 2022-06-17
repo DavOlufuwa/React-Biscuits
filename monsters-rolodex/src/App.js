@@ -55,7 +55,8 @@ class App extends Component {
            })
         
         </h1> */}
-        <CardList monsters={filteredMonsters} anything ={["a", "z"]}/>
+        <h1 className='Title'>MONSTERS ROLODEX</h1>
+        <CardList monsters={filteredMonsters} />
       </div>
     );
 
